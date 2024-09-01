@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&1u1@wpg1y8rro8zmgi@%1fg%ju@fu$q^*%3tum&eds6a(!4zf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'webapp',
 
     'crispy_forms',
+    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -42,6 +43,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   
 ]
 
 ROOT_URLCONF = 'crm.urls'
@@ -68,14 +70,37 @@ WSGI_APPLICATION = 'crm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+#DATABASES = { # sqlite
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
+DATABASES = { # mysql on 192.168.1.68
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "crm_db",
+        "USER": "root",
+        "PASSWORD": "some_pass",
+        "HOST": "192.168.1.68",
+        "PORT": "3306",
     }
 }
 
+#DATABASES = { # mysql on kikkare.eu.pythonanywhere
+#    "default": {
+#        "ENGINE": "django.db.backends.mysql",
+#        "NAME": "kikkare$default",
+#        "USER": "kikkare",
+#        "PASSWORD": "some_pass",
+#        "HOST": "kikkare.mysql.eu.pythonanywhere-services.com",
+#        "PORT": "3306",
+#    }
+#}
 
+
+# "mysql+pymysql://meckic:MySQL!23@meckic.mysql.pythonanywhere-services.com:3306/meckic$shop-list"
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -120,11 +145,20 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#to get https to work...:
+SECURE_BROWSER_XSS_FILTER = False
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
+SECURE_SSL_REDIRECT = False
 
+SECURE_HSTS_SECONDS = 86400  # This one was set to 86400
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 

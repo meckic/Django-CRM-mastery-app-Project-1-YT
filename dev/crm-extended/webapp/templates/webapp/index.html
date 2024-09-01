@@ -1,0 +1,28 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+    
+    <body>
+
+        <br>
+        <br>
+
+        <div class="text-center">
+
+            <h3> Asiakaskanta! </h3>
+
+            <br>
+
+            <h5> Pidä asiakastiedot ajantasalla! </h5>
+
+            <hr>
+            <br>
+
+            <a class="btn btn-primary" type="button" href="{% url 'register' %}"> Luo oma tili &nbsp; <i class="fa fa-user-plus" aria-hidden="true"></i> </a>
+
+        </div>
+
+    </body>        
+
+
+{% endblock %}
