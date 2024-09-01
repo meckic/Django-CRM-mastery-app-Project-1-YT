@@ -42,16 +42,19 @@
             {% for event in events %}
 
             <tr>
-
                 <td> {{event.id}} </td>
                 <td> {{event.name}}  </td>
                 <td> {{event.description}} </td>
                 <td> {{event.date}} </td>
                 <td> {{event.webpage}} </td>
-                <td> {{event.venue}} {{event.venue.city}} </td>
+                <td> {{event.venue}} {{event.venue.city}} {{event.venue.country}}  </td>
+                <td>
                 {% for attendee in event.attendees.all %}
-                    <td> {{attendee}} </td>
+                    {{attendee}},
                 {% endfor %}    
+                </td>
+                <!-- <td> {{event.attendees.all }} </td>  -->
+                
                 <td> <a class="btn btn-success btn-sm" href="{% url 'event-view' %}"> <i class="fa fa-eye" aria-hidden="true"></i> </a> </td>
 
             </tr>
@@ -66,5 +69,5 @@
 
     </table>
 
-
+    <!–– and the comment closes with ––>
 {% endblock %}
