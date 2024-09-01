@@ -43,12 +43,12 @@ def my_login(request):
     context = {'form':form}
     return render(request, 'webapp/my-login.html', context=context)
 
-# - Dashboard
+# - Persons
 @login_required(login_url='my-login')
-def dashboard(request):
-    my_records = Person.objects.all()
-    context = {'records': my_records}
-    return render(request, 'webapp/dashboard.html', context=context)
+def person_view(request):
+    my_persons = Person.objects.all()
+    context = {'persons': my_persons}
+    return render(request, 'webapp/person-view.html', context=context)
 
 # - Events
 @login_required(login_url='my-login')
@@ -93,43 +93,26 @@ def update_record(request, pk):
     return render(request, 'webapp/update-record.html', context=context)
 
 
-# - Read / View a singular record
-
+# - Read / View a singular person
 @login_required(login_url='my-login')
-def singular_record(request, pk):
-
-    all_records = Person.objects.get(id=pk)
-
-    context = {'record':all_records}
-
-    return render(request, 'webapp/view-record.html', context=context)
-
+def singular_person(request, pk):
+    my_person = Person.objects.get(id=pk)
+    context = {'person':my_person}
+    return render(request, 'webapp/singular-person.html', context=context)
 
 # - Delete a record
-
 @login_required(login_url='my-login')
 def delete_record(request, pk):
-
     record = Person.objects.get(id=pk)
-
     record.delete()
-
     messages.success(request, "Your record was deleted!")
-
     return redirect("dashboard")
 
-
-
 # - User logout
-
 def user_logout(request):
-
     auth.logout(request)
-
     messages.success(request, "Logout success!")
-
     return redirect("my-login")
-
 
 
 
