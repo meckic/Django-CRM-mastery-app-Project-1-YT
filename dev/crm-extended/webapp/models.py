@@ -1,7 +1,7 @@
 from django.db import models
 
 class Person(models.Model):
-    id = models.CharField(max_length=1000, primary_key=True)
+    id = models.AutoField(primary_key=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -18,7 +18,7 @@ class Person(models.Model):
 
 
 class Venue(models.Model):
-    id = models.CharField(max_length=1000, primary_key=True)
+    id = models.AutoField(primary_key=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=255)
@@ -34,7 +34,7 @@ class Venue(models.Model):
 
 
 class Event(models.Model):
-    id = models.CharField(max_length=1000, primary_key=True)
+    id = models.AutoField(primary_key=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=200)
     date = models.DateTimeField()
