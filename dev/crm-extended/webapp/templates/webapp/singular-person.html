@@ -19,11 +19,12 @@
             <p> <strong> Creation date: </strong> {{person.creation_date}} </p>
         </div>
     </div>
-    <br> <!--
-    <a href="{% url 'singular-person' %}" class="btn btn-secondary"> Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
-    &nbsp; -->
-    <a href="{% url 'update-record' record.id %}" class="btn btn-info"> Update record &nbsp; <i class="fa fa-plus" aria-hidden="true"></i> </a>
+    
+    <br> 
+    <a href="{% url 'person-view' %}" class="btn btn-secondary"> Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
+    &nbsp; 
+    <a href="{% url 'update-person' person.id %}" class="btn btn-info"> Update person &nbsp; <i class="fa fa-plus" aria-hidden="true"></i> </a>
     &nbsp;
-    <a href="{% url 'delete-record' record.id %}" class="btn btn-danger"> Delete &nbsp;<i class="fa fa-minus-square" aria-hidden="true"></i> </a>
+    <a href="{% url 'delete-person' person.id %}" class="btn btn-danger"> Delete &nbsp;<i class="fa fa-minus-square" aria-hidden="true"></i> </a>
 {% endblock %}
 

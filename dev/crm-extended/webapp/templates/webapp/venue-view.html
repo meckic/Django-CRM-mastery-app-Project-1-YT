@@ -1,11 +1,9 @@
 {% extends 'webapp/base.html' %}
-
 {% block content %}
-
     <h5> Welcome, {{user}}! 👋 </h5>
     <hr>
-    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-record' %}">
-        Create a new record &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-person' %}">
+        Create a new person &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </a>
     <hr> 
     <table class="table table-hover table-bordered">
@@ -30,7 +28,7 @@
             {% for venue in venues %}
             <tr>
                 <td> {{venue.id}} </td>
-                <td> {{venue.creation_date}}  </td>
+                <td> {{venue.creation_date.date}}  </td>
                 <td> {{venue.name}}  </td>
                 <td> {{venue.email}} </td>
                 <td> {{venue.phone}} </td>
@@ -38,7 +36,8 @@
                 <td> {{venue.city}}  </td>
                 <td> {{venue.province}}  </td>
                 <td> {{venue.country}}  </td>
-                <td> {{venue.upload}}  </td>
+                <!-- <td> {{venue.upload}}  </td> -->
+                <td> <img src="{{venue.upload.url}}" class="banner" alt="{{venue.id}}" /> </td>
                 <!-- <td> {{venue.attendees.all }} </td>  -->
                 <td> <a class="btn btn-success btn-sm" href="{% url 'venue-view' %}"> <i class="fa fa-eye" aria-hidden="true"></i> </a> </td>
             </tr>
@@ -46,5 +45,4 @@
         {% endif %}
         </tbody>
     </table>
-    <!–– and the comment closes with ––>
 {% endblock %}

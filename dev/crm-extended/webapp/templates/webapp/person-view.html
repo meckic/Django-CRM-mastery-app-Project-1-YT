@@ -4,8 +4,8 @@
 
     <h5> Welcome, {{user}}! 👋 </h5>
     <hr>
-    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-record' %}">
-        Create a new record &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-person' %}">
+        Create a new person &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </a>
     <hr> 
     <table class="table table-hover table-bordered">
@@ -36,7 +36,7 @@
                 <td> {{person.city}} </td>
                 <td> {{person.province}} </td>
                 <td> {{person.country}} </td>
-                <td> {{person.creation_date}} </td>
+                <td> {{person.creation_date.date}} </td> 
                 <td> <a class="btn btn-success btn-sm" href="{% url 'singular-person' person.id %}"> <i class="fa fa-eye" aria-hidden="true"></i> </a> </td>
             </tr>
             {% endfor %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm, LoginForm, CreateRecordForm, UpdateRecordForm
+from .forms import CreateUserForm, LoginForm, CreatePersonForm, UpdatePersonForm
 
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
@@ -64,33 +64,33 @@ def venue_view(request):
     context = {'venues': my_venues}
     return render(request, 'webapp/venue-view.html', context=context)
 
-# - Create a record 
+# - Create a person 
 @login_required(login_url='my-login')
-def create_record(request):
-    form = CreateRecordForm()
+def create_person(request):
+    form = CreatePersonForm()
     if request.method == "POST":
-        form = CreateRecordForm(request.POST)
+        form = CreatePersonForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Your record was created!")
-            return redirect("dashboard")
+            messages.success(request, "Your person was created!")
+            return redirect("person-view")
     context = {'form': form}
-    return render(request, 'webapp/create-record.html', context=context)
+    return render(request, 'webapp/create-person.html', context=context)
 
 
-# - Update a record 
+# - Update a person 
 @login_required(login_url='my-login')
-def update_record(request, pk):
-    record = Person.objects.get(id=pk)
-    form = UpdateRecordForm(instance=record)
+def update_person(request, pk):
+    person = Person.objects.get(id=pk)
+    form = UpdatePersonForm(instance=person)
     if request.method == 'POST':
-        form = UpdateRecordForm(request.POST, instance=record)
+        form = UpdatePersonForm(request.POST, instance=person)
         if form.is_valid():
             form.save()
-            messages.success(request, "Your record was updated!")
-            return redirect("dashboard")
+            messages.success(request, "Your person was updated!")
+            return redirect("person-view")
     context = {'form':form}
-    return render(request, 'webapp/update-record.html', context=context)
+    return render(request, 'webapp/update-person.html', context=context)
 
 
 # - Read / View a singular person
@@ -100,13 +100,13 @@ def singular_person(request, pk):
     context = {'person':my_person}
     return render(request, 'webapp/singular-person.html', context=context)
 
-# - Delete a record
+# - Delete a person
 @login_required(login_url='my-login')
-def delete_record(request, pk):
-    record = Person.objects.get(id=pk)
-    record.delete()
-    messages.success(request, "Your record was deleted!")
-    return redirect("dashboard")
+def delete_person(request, pk):
+    person = Person.objects.get(id=pk)
+    person.delete()
+    messages.success(request, "Your person was deleted!")
+    return redirect("person-view")
 
 # - User logout
 def user_logout(request):

@@ -21,14 +21,14 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput())
     password = forms.CharField(widget=PasswordInput())
 
-# - Create a record
-class CreateRecordForm(forms.ModelForm):
+# - Create a person
+class CreatePersonForm(forms.ModelForm):
     class Meta:
         model = Person
         fields = ['first_name', 'last_name', 'email', 'phone', 'address', 'city', 'province', 'country']
         
-# - Update a record
-class UpdateRecordForm(forms.ModelForm):
+# - Update a person
+class UpdatePersonForm(forms.ModelForm):
     class Meta:
         model = Person
         fields = ['first_name', 'last_name', 'email', 'phone', 'address', 'city', 'province', 'country']

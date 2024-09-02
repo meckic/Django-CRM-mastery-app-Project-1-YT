@@ -12,10 +12,10 @@ urlpatterns = [
     path('person-view', views.person_view, name="person-view"),
     path('event-view', views.event_view, name="event-view"),
     path('venue-view', views.venue_view, name="venue-view"),
-    path('create-record', views.create_record, name="create-record"),
-    path('update-record/<int:pk>', views.update_record, name='update-record'),
+    path('create-person', views.create_person, name="create-person"),
+    path('update-person/<int:pk>', views.update_person, name='update-person'),
     path('singular-person/<int:pk>', views.singular_person, name="singular-person"),
-    path('delete-record/<int:pk>', views.delete_record, name="delete-record"),
+    path('delete-person/<int:pk>', views.delete_person, name="delete-person"),
     
     # nameofwebsubdirANDHtmlFile: .../this-dir    nameofDEFinViews: this_dir     nameof???: this-dir   
 
