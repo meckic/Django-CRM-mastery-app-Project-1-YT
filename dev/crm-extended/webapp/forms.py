@@ -33,3 +33,26 @@ class UpdatePersonForm(forms.ModelForm):
         model = Person
         fields = ['first_name', 'last_name', 'email', 'phone', 'address', 'city', 'province', 'country']
 
+# - Create an event
+class CreateEventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['name', 'date', 'description', 'webpage', 'venue', 'attendees']  # du NOT ment. the autocreated
+        
+# - Update an event
+class UpdateEventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['name', 'date', 'description', 'webpage', 'venue', 'attendees']
+
+# - Create an venue
+class CreateVenueForm(forms.ModelForm):
+    class Meta:
+        model = Venue
+        fields = ['name', 'email', 'phone', 'address', 'city', 'province', 'country', 'upload']
+        
+# - Update an venue
+class UpdateVenueForm(forms.ModelForm):
+    class Meta:
+        model = Venue
+        fields = ['name', 'email', 'phone', 'address', 'city', 'province', 'country', 'upload']

@@ -2,8 +2,8 @@
 {% block content %}
     <h5> Welcome, {{user}}! 👋 </h5>
     <hr>
-    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-person' %}">
-        Create a new person &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-event' %}">
+        Create a new event &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </a>
     <hr> 
     <table class="table table-hover table-bordered">
@@ -36,7 +36,7 @@
                 {% endfor %}    
                 </td>
                 <!-- <td> {{event.attendees.all }} </td>  -->
-                <td> <a class="btn btn-success btn-sm" href="{% url 'event-view' %}"> <i class="fa fa-eye" aria-hidden="true"></i> </a> </td>
+                <td> <a class="btn btn-success btn-sm" href="{% url 'singular-event' event.id  %}"> <i class="fa fa-eye" aria-hidden="true"></i> </a> </td>
             </tr>
             {% endfor %}
         {% endif %}

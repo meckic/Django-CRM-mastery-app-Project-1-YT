@@ -1,0 +1,30 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i> &nbsp;
+            <strong>   
+                {{venue.name|upper}}
+                {{venue.city}}
+            </strong>
+            <hr> 
+            <p> <strong> ID: </strong> {{venue.id}} </p>
+            <p> <strong> Email: </strong> {{venue.email}} </p>
+            <p> <strong> Phone number: </strong> {{venue.phone}} </p>
+            <p> <strong> Address: </strong> {{venue.address}} </p>
+            <p> <strong> Province: </strong> {{venue.province}} </p>
+            <p> <strong> Country: </strong> {{venue.country}} </p>
+            <p> <strong> Creation date: </strong> {{venue.creation_date}} </p>
+            <p> <strong> Pic: </strong> <img src="{{venue.upload.url}}" class="banner" alt="{{venue.id}}" /> </p>
+        </div>
+    </div>
+    
+    <br> 
+    <a href="{% url 'venue-view' %}" class="btn btn-secondary"> Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
+    &nbsp; 
+    <a href="{% url 'update-venue' venue.id %}" class="btn btn-info"> Update venue &nbsp; <i class="fa fa-plus" aria-hidden="true"></i> </a>
+    &nbsp;
+    <a href="{% url 'delete-venue' venue.id %}" class="btn btn-danger"> Delete &nbsp;<i class="fa fa-minus-square" aria-hidden="true"></i> </a>
+{% endblock %}
+
