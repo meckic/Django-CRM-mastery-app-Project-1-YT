@@ -11,23 +11,6 @@ from .models import Person
 from .models import Event
 from .models import Venue
 
-#from django.middleware.common import MiddlewareMixin
-#from django.http import HttpResponse
-#import logging
-#logger = logging.getLogger(__name__)
-#class GlobalExceptionHandlerMiddleware(MiddlewareMixin):
-#    def process_exception(self, request, exception):
-        #logger.exception(f"An error occurred: {exception}")
-        ## Render a custom error template
-        #return render(request, 'errors/500.html', {'exception': exception})
-#        messages.error( "You are not authorized!")
-
-#def handle_exception(request, exception):
-#    if isinstance(exception, PermissionDenied):
-#        messages.error(request, "You are not authorized!")
-#        return render(request, 'permission_denied.html')
-#    return None
-
 # - Homepage 
 def home(request):
     return render(request, 'webapp/index.html')
