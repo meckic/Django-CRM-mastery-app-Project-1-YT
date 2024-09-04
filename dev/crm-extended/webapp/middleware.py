@@ -35,6 +35,7 @@ response_content = f"""
 
 class GlobalExceptionHandlerMiddleware(MiddlewareMixin):
     def process_exception(self, request, exception):
+        logger.exception(f"An error occurred: {exception}")
         # Customize error handling logic here
         #error_message = "You are not authorized to execute the command!"
         #return HttpResponse(f"An error occurred: {error_message} Please return to prev page.", status=500)

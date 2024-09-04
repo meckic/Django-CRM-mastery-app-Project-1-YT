@@ -15,10 +15,6 @@ from .models import Venue
 def home(request):
     return render(request, 'webapp/index.html')
 
-#def error(request):
-#    return render(request, 'webapp/error.html')
-
-
 # - Register a user
 def register(request):
     form = CreateUserForm()
@@ -47,29 +43,27 @@ def my_login(request):
     return render(request, 'webapp/my-login.html', context=context)
 
 # - Persons
-@login_required(login_url='my-login')
+@permission_required('webapp.view_person', raise_exception=True)
 def person_view(request):
     my_persons = Person.objects.all()
     context = {'persons': my_persons}
     return render(request, 'webapp/person-view.html', context=context)
 
 # - Events
-@login_required(login_url='my-login')
+@permission_required('webapp.view_event', raise_exception=True)
 def event_view(request):
     my_events = Event.objects.all()
     context = {'events': my_events}
     return render(request, 'webapp/event-view.html', context=context)
 
 # - Venues
-@login_required(login_url='my-login')
+@permission_required('webapp.view_venue', raise_exception=True)
 def venue_view(request):
     my_venues = Venue.objects.all()
     context = {'venues': my_venues}
     return render(request, 'webapp/venue-view.html', context=context)
 
-
 # - Create a person 
-#@login_required(login_url='my-login')
 @permission_required('webapp.add_person', raise_exception=True)
 def create_person(request):
     form = CreatePersonForm()
@@ -83,7 +77,6 @@ def create_person(request):
     return render(request, 'webapp/create-person.html', context=context)
 
 # - Update a person 
-#@login_required(login_url='my-login')
 @permission_required('webapp.change_person', raise_exception=True)
 def update_person(request, pk):
     person = Person.objects.get(id=pk)
@@ -98,7 +91,6 @@ def update_person(request, pk):
     return render(request, 'webapp/update-person.html', context=context)
 
 # - Read / View a singular person
-#@login_required(login_url='my-login')
 @permission_required('webapp.view_person', raise_exception=True)
 def singular_person(request, pk):
     my_person = Person.objects.get(id=pk)
@@ -106,7 +98,6 @@ def singular_person(request, pk):
     return render(request, 'webapp/singular-person.html', context=context)
 
 # - Delete a person
-#@login_required(login_url='my-login')
 @permission_required('webapp.delete_person', raise_exception=True)
 def delete_person(request, pk):
     person = Person.objects.get(id=pk)
@@ -116,7 +107,7 @@ def delete_person(request, pk):
 
 
 # - Create an event 
-@login_required(login_url='my-login')
+@permission_required('webapp.add_event', raise_exception=True)
 def create_event(request):
     form = CreateEventForm()
     if request.method == "POST":
@@ -129,7 +120,7 @@ def create_event(request):
     return render(request, 'webapp/create-event.html', context=context)
 
 # - Update an event 
-@login_required(login_url='my-login')
+@permission_required('webapp.change_event', raise_exception=True)
 def update_event(request, pk):
     event = Event.objects.get(id=pk)
     form = UpdateEventForm(instance=event)
@@ -143,14 +134,14 @@ def update_event(request, pk):
     return render(request, 'webapp/update-event.html', context=context)
 
 # - Read / View a singular event
-@login_required(login_url='my-login')
+@permission_required('webapp.view_event', raise_exception=True)
 def singular_event(request, pk):
     my_event = Event.objects.get(id=pk)
     context = {'event':my_event}
     return render(request, 'webapp/singular-event.html', context=context)
 
 # - Delete an event
-@login_required(login_url='my-login')
+@permission_required('webapp.delete_event', raise_exception=True)
 def delete_event(request, pk):
     event = Event.objects.get(id=pk)
     Event.delete()
@@ -159,7 +150,7 @@ def delete_event(request, pk):
 
 
 # - Create an venue 
-@login_required(login_url='my-login')
+@permission_required('webapp.add_venue', raise_exception=True)
 def create_venue(request):
     form = CreateVenueForm()
     if request.method == "POST":
@@ -172,7 +163,7 @@ def create_venue(request):
     return render(request, 'webapp/create-venue.html', context=context)
 
 # - Update an venue 
-@login_required(login_url='my-login')
+@permission_required('webapp.change_venue', raise_exception=True)
 def update_venue(request, pk):
     venue = Venue.objects.get(id=pk)
     form = UpdateVenueForm(instance=venue)
@@ -186,14 +177,14 @@ def update_venue(request, pk):
     return render(request, 'webapp/update-venue.html', context=context)
 
 # - Read / View a singular venue
-@login_required(login_url='my-login')
+@permission_required('webapp.view_venue', raise_exception=True)
 def singular_venue(request, pk):
     my_venue = Venue.objects.get(id=pk)
     context = {'venue':my_venue}
     return render(request, 'webapp/singular-venue.html', context=context)
 
 # - Delete an venue
-@login_required(login_url='my-login')
+@permission_required('webapp.delete_venue', raise_exception=True)
 def delete_venue(request, pk):
     venue = Venue.objects.get(id=pk)
     Venue.delete()
