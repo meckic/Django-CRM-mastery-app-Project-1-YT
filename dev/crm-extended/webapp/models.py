@@ -42,12 +42,12 @@ class Event(models.Model):
     webpage = models.URLField()
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     attendees = models.ManyToManyField(Person, blank=True)
-    #upload = models.FileField(upload_to="media/", blank=True)
-    #upload = models.FileField(upload_to="media/%Y/%m/%d/")
-
+    
     def __str__(self):
         return self.name
 
+#upload = models.FileField(upload_to="media/", blank=True)
+#upload = models.FileField(upload_to="media/%Y/%m/%d/")
 
 
 

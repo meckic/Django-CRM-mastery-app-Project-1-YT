@@ -71,10 +71,10 @@ DATABASES = { # sqlite
     }
 }
 
-#DATABASES = { # mysql on 192.168.1.68
+#DATABASES = { # mysql on 192.168.1.68  #updated 4.9.2024: all tables, all autth
 #    "default": {
 #        "ENGINE": "django.db.backends.mysql",
-#        "NAME": "crm_db",
+#        "NAME": "crm_db5",
 #        "USER": "root",
 #        "PASSWORD": "some_pass",
 #        "HOST": "192.168.1.68",
