@@ -191,6 +191,35 @@ def delete_venue(request, pk):
     messages.success(request, "Your venue was deleted!")
     return redirect("venue-view")
 
+# - search
+@permission_required('webapp.view_person', raise_exception=True)
+def search_view(request):
+    #my_persons = Person.objects.all()
+    query = request.GET.get('search', '')
+    print(f'{query = }')
+
+    my_persons = Person.objects.all()
+    if query:
+        my_persons = my_persons.filter(first_name__icontains=query)
+    #else:
+    #    my_persons = my_persons.filter(first_name__icontains="xyz")
+    #context = {'count': my_persons.count()}
+    context = {'persons': my_persons, 'count': my_persons.count()}
+    return render(request, 'webapp/search-view.html', context=context)
+
+@permission_required('webapp.view_person', raise_exception=True)
+def search_results_view(request):
+    query = request.GET.get('search', '')
+    print(f'{query = }')
+
+    my_persons = Person.objects.all()
+    if query:
+        my_persons = my_persons.filter(first_name__icontains=query)
+    #else:
+    #    my_persons = []
+
+    context = {'persons': my_persons, 'count': my_persons.count()}
+    return render(request, 'webapp/search-results-view.html', context=context)
 
 # - User logout
 def user_logout(request):

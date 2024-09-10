@@ -27,7 +27,10 @@ urlpatterns = [
     path('update-venue/<int:pk>', views.update_venue, name='update-venue'),
     path('singular-venue/<int:pk>', views.singular_venue, name="singular-venue"),
     path('delete-venue/<int:pk>', views.delete_venue, name="delete-venue"),
-    
+
+    path('search-view', views.search_view, name='search-view'),
+    path('search-results-view', views.search_results_view, name='search-results-view'),
+
     # nameofwebsubdirANDHtmlFile: .../this-dir    nameofDEFinViews: this_dir     nameof???: this-dir   
 
 ]
