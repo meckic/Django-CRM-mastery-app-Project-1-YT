@@ -194,15 +194,14 @@ def delete_venue(request, pk):
 # - search
 @permission_required('webapp.view_person', raise_exception=True)
 def search_view(request):
-    #my_persons = Person.objects.all()
     query = request.GET.get('search', '')
     print(f'{query = }')
 
     my_persons = Person.objects.all()
     if query:
         my_persons = my_persons.filter(first_name__icontains=query)
-    #else:
-    #    my_persons = my_persons.filter(first_name__icontains="xyz")
+    else:
+        my_persons = my_persons.filter(first_name__icontains="xyz") #my_persons empty
     #context = {'count': my_persons.count()}
     context = {'persons': my_persons, 'count': my_persons.count()}
     return render(request, 'webapp/search-view.html', context=context)
@@ -215,8 +214,8 @@ def search_results_view(request):
     my_persons = Person.objects.all()
     if query:
         my_persons = my_persons.filter(first_name__icontains=query)
-    #else:
-    #    my_persons = []
+    else:
+        my_persons = my_persons.filter(first_name__icontains="xyz") #my_persons empty
 
     context = {'persons': my_persons, 'count': my_persons.count()}
     return render(request, 'webapp/search-results-view.html', context=context)
