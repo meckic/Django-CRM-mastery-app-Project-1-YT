@@ -5,9 +5,15 @@
     <table class="table table-hover table-bordered">
         <thead class="table-light">
             <tr>
-                <th scope="col"> First name </th>
-                <th scope="col"> Last name </th>
+                <th scope="col"> Full name </th>
                 <th scope="col"> Email </th>
+                <th scope="col"> Phone </th>
+                <th scope="col"> Address </th>
+                <th scope="col"> City </th>
+                <th scope="col"> Province </th>
+                <th scope="col"> Country </th>
+                <th scope="col"> Date joined </th>
+                <th scope="col"> View </th>
             </tr>
         </thead>
     
@@ -16,9 +22,15 @@
                 <hr>
                 {% for person in persons %}
                 <tr>
-                    <th>{{ person.first_name }}</th>
-                    <th>{{ person.last_name }}</th>
-                    <th>{{ person.email }}</th>
+                    <td> {{person.first_name}}  {{person.last_name}} </td>
+                    <td> {{person.email}} </td>
+                    <td> {{person.phone}} </td>
+                    <td> {{person.address}} </td>
+                    <td> {{person.city}} </td>
+                    <td> {{person.province}} </td>
+                    <td> {{person.country}} </td>
+                    <td> {{person.creation_date.date}} </td> 
+                    <td> <a class="btn btn-success btn-sm" href="{% url 'singular-person' person.id %}"> <i class="fa fa-eye" aria-hidden="true"></i> </a> </td>
                 </tr>
                 {% endfor %}
         </tbody>

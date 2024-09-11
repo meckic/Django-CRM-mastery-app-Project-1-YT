@@ -196,7 +196,6 @@ def delete_venue(request, pk):
 def search_view(request):
     query = request.GET.get('search', '')
     print(f'{query = }')
-
     my_persons = Person.objects.all()
     if query:
         my_persons = my_persons.filter(first_name__icontains=query)
@@ -210,7 +209,6 @@ def search_view(request):
 def search_results_view(request):
     query = request.GET.get('search', '')
     print(f'{query = }')
-
     my_persons = Person.objects.all()
     if query:
         my_persons = my_persons.filter(first_name__icontains=query)
