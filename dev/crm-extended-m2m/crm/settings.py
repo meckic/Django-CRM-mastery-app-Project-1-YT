@@ -67,7 +67,7 @@ WSGI_APPLICATION = 'crm.wsgi.application'
 DATABASES = { # sqlite
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3m2m',
     }
 }
 
@@ -144,7 +144,7 @@ SECURE_HSTS_SECONDS = 86400  # This one was set to 86400
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-SESSION_COOKIE_SECURE = True #False tu run remotely on linux
-CSRF_COOKIE_SECURE = True    #False tu run remotely on linux
+SESSION_COOKIE_SECURE = True #False tu run remotely on Pi4z
+CSRF_COOKIE_SECURE = True    #False tu run remotely on Pi4Z
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
