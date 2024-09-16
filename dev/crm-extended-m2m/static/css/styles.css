@@ -8,12 +8,18 @@
     color: white;
 }
 
-/* banner for image size */
+/* banner for image size multi-line */
 .banner{
     display: block;
     width: 100%;
     max-width: 40px;
 }
 
+/* banner for bigger image size singular view*/
+.bannerb{
+    display: block;
+    width: 100%;
+    max-width: 200px;
+}
 
 
