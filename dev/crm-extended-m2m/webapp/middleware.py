@@ -19,12 +19,12 @@ response_content = f"""
     <body> 
         <div class="container">
             <br>
-                <p id="message-timer" class="alert alert-success float-center text-center message-text"> 
+                <p id="message-timer" class="alert alert-warning float-center text-center message-text"> 
                     <i class="fa fa-check" aria-hidden="true"></i> &nbsp; You are not authorized to execute that action!
                 </p>
              <br>
                 <p id="message-timer" class="alert alert-success float-center text-center message-text"> 
-                    <i class="fa fa-check" aria-hidden="true"></i> &nbsp; Please navigate to the prev page!
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp; Please navigate to the prev page!
                 </p>
         </div>
     </body>
@@ -35,7 +35,10 @@ response_content = f"""
 
 class GlobalExceptionHandlerMiddleware(MiddlewareMixin):
     def process_exception(self, request, exception):
-        logger.exception(f"An error occurred: {exception}")
+        print("request:", request)
+        logger.exception(f"Logger exception: {exception}")
+        print("end of Logger except text")
+        print("type:",type(logger.exception(exception)))
         # Customize error handling logic here
         #error_message = "You are not authorized to execute the command!"
         #return HttpResponse(f"An error occurred: {error_message} Please return to prev page.", status=500)
