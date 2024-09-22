@@ -1,9 +1,8 @@
-import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -123,11 +122,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+#STATIC_ROOT = "/home/kikkare/dev/crm/static"  # needed in pythonanywhere only!
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static'] # also media/ and images needs this! NOT in pythonanywhere!
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '')
+#MEDIA_URL = 'media/'  # 'media' (w/o slash) in pythonanywhere!
+MEDIA_ROOT = BASE_DIR / 'static' # not in pythonanywhere
+#MEDIA_ROOT = "/home/kikkare/dev/crm/static/media" # needed in pythonanywhere only!
+
+# in pythonanywhere web tab !!!:
+# /static/	/home/kikkare/dev/crm/.venv/lib/python3.10/site-packages/django/contrib/admin/static	 
+# /static/	/home/kikkare/dev/crm/static	 
+# /media/	/home/kikkare/dev/crm/static/media/media
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -135,7 +141,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #to get https to work...:
-SECURE_BROWSER_XSS_FILTER = False
+SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
 SECURE_SSL_REDIRECT = False
@@ -144,7 +150,7 @@ SECURE_HSTS_SECONDS = 86400  # This one was set to 86400
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-SESSION_COOKIE_SECURE = True #False tu run remotely on Pi4z
-CSRF_COOKIE_SECURE = True    #False tu run remotely on Pi4Z
+SESSION_COOKIE_SECURE = False  #False tu run remotely on Pi4z
+CSRF_COOKIE_SECURE = False    #False tu run remotely on Pi4Z
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

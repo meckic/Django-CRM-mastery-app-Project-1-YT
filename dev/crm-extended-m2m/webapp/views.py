@@ -145,7 +145,7 @@ def singular_event(request, pk):
 @permission_required('webapp.delete_event', raise_exception=True)
 def delete_event(request, pk):
     event = Event.objects.get(id=pk)
-    Event.delete()
+    event.delete()
     messages.success(request, "Your event was deleted!")
     return redirect("event-view")
 
@@ -169,7 +169,7 @@ def update_venue(request, pk):
     venue = Venue.objects.get(id=pk)
     form = UpdateVenueForm(instance=venue)
     if request.method == 'POST':
-        form = UpdateVenueForm(request.POST, instance=venue)
+        form = UpdateVenueForm(request.POST, request.FILES, instance=venue)
         if form.is_valid():
             form.save()
             messages.success(request, "Your venue was updated!")
@@ -188,7 +188,7 @@ def singular_venue(request, pk):
 @permission_required('webapp.delete_venue', raise_exception=True)
 def delete_venue(request, pk):
     venue = Venue.objects.get(id=pk)
-    Venue.delete()
+    venue.delete()
     messages.success(request, "Your venue was deleted!")
     return redirect("venue-view")
 
