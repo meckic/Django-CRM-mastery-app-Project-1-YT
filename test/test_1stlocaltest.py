@@ -23,10 +23,25 @@ class Test1stlocaltest():
   def test_1stlocaltest(self):
     # Test name: 1st local test
     # Step # | name | target | value | comment
+    #pytest.set_trace()
+
     # 1 | open | / |  | 
     self.driver.get("http://127.0.0.1:8000/")
     # 2 | setWindowSize | 1392x1026 |  | 
     self.driver.set_window_size(1392, 1026)
+    
+    # 3 | click | linkText=Login |  | 
+    self.driver.find_element(By.LINK_TEXT, "Login").click()
+    # 4 | click | id=id_username |  | 
+    self.driver.find_element(By.ID, "id_username").click()
+    # 5 | type | id=id_username | mecki | 
+    self.driver.find_element(By.ID, "id_username").send_keys("mecki")
+    # 6 | type | id=id_password | Mowgli!23 | 
+    self.driver.find_element(By.ID, "id_password").send_keys("Mowgli!23")
+    # 7 | sendKeys | id=id_password | ${KEY_ENTER} | 
+    self.driver.find_element(By.ID, "id_password").send_keys(Keys.ENTER)
+    
+    
     # 3 | click | linkText=Persons |  | 
     self.driver.find_element(By.LINK_TEXT, "Persons").click()
     # 4 | click | linkText=Create a new person |  | 
@@ -34,23 +49,24 @@ class Test1stlocaltest():
     # 5 | click | id=id_first_name |  | 
     self.driver.find_element(By.ID, "id_first_name").click()
     # 6 | type | id=id_first_name | fn | 
-    self.driver.find_element(By.ID, "id_first_name").send_keys("fn")
+    self.driver.find_element(By.ID, "id_first_name").send_keys("John")
     # 7 | type | id=id_last_name | ln | 
-    self.driver.find_element(By.ID, "id_last_name").send_keys("ln")
+    self.driver.find_element(By.ID, "id_last_name").send_keys("Doe")
     # 8 | type | id=id_email | em@em.com | 
-    self.driver.find_element(By.ID, "id_email").send_keys("em@em.com")
+    self.driver.find_element(By.ID, "id_email").send_keys("Jon@gmail.com")
     # 9 | type | id=id_phone | 112233 | 
-    self.driver.find_element(By.ID, "id_phone").send_keys("112233")
+    self.driver.find_element(By.ID, "id_phone").send_keys("+11122334455")
     # 10 | type | id=id_address | addrr | 
-    self.driver.find_element(By.ID, "id_address").send_keys("addrr")
+    self.driver.find_element(By.ID, "id_address").send_keys("addrr 1")
     # 11 | type | id=id_city | citty | 
     self.driver.find_element(By.ID, "id_city").send_keys("citty")
     # 12 | type | id=id_province | provv | 
-    self.driver.find_element(By.ID, "id_province").send_keys("provv")
+    self.driver.find_element(By.ID, "id_province").send_keys("NY")
     # 13 | type | id=id_country | countr | 
-    self.driver.find_element(By.ID, "id_country").send_keys("countr")
+    self.driver.find_element(By.ID, "id_country").send_keys("US")
     # 14 | click | css=.btn-primary |  | 
     self.driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
+    pytest.set_trace()
     # 15 | click | css=tr:nth-child(4) .fa |  | 
     self.driver.find_element(By.CSS_SELECTOR, "tr:nth-child(4) .fa").click()
     # 16 | click | linkText=Update person |  | 
@@ -58,7 +74,7 @@ class Test1stlocaltest():
     # 17 | click | id=id_city |  | 
     self.driver.find_element(By.ID, "id_city").click()
     # 18 | type | id=id_city | city | 
-    self.driver.find_element(By.ID, "id_city").send_keys("city")
+    self.driver.find_element(By.ID, "id_city").send_keys("NYC")
     # 19 | click | css=.btn-info |  | 
     self.driver.find_element(By.CSS_SELECTOR, ".btn-info").click()
     # 20 | click | linkText=Venues |  | 
@@ -68,15 +84,15 @@ class Test1stlocaltest():
     # 22 | click | id=id_name |  | 
     self.driver.find_element(By.ID, "id_name").click()
     # 23 | type | id=id_name | tvenue | 
-    self.driver.find_element(By.ID, "id_name").send_keys("tvenue")
+    self.driver.find_element(By.ID, "id_name").send_keys("Stadion")
     # 24 | type | id=id_email | tem@em.ocm | 
-    self.driver.find_element(By.ID, "id_email").send_keys("tem@em.ocm")
+    self.driver.find_element(By.ID, "id_email").send_keys("stadm@gmail.ocm")
     # 25 | type | id=id_phone | 33333 | 
-    self.driver.find_element(By.ID, "id_phone").send_keys("33333")
+    self.driver.find_element(By.ID, "id_phone").send_keys("+35822334455")
     # 26 | click | id=id_address |  | 
     self.driver.find_element(By.ID, "id_address").click()
     # 27 | type | id=id_address | addree | 
-    self.driver.find_element(By.ID, "id_address").send_keys("addree")
+    self.driver.find_element(By.ID, "id_address").send_keys("PNT 1")
     # 28 | click | id=id_city |  | 
     self.driver.find_element(By.ID, "id_city").click()
     # 29 | type | id=id_city | citty | 
@@ -88,7 +104,7 @@ class Test1stlocaltest():
     # 32 | click | id=id_country |  | 
     self.driver.find_element(By.ID, "id_country").click()
     # 33 | type | id=id_country | contr | 
-    self.driver.find_element(By.ID, "id_country").send_keys("contr")
+    self.driver.find_element(By.ID, "id_country").send_keys("Finland")
     # 36 | click | css=.btn-primary |  | 
     self.driver.find_element(By.CSS_SELECTOR, ".btn-primary").click()
     # 37 | click | css=tr:nth-child(3) .fa |  | 
@@ -102,7 +118,7 @@ class Test1stlocaltest():
     # 41 | click | id=id_city |  | 
     self.driver.find_element(By.ID, "id_city").click()
     # 42 | type | id=id_city | city | 
-    self.driver.find_element(By.ID, "id_city").send_keys("city")
+    self.driver.find_element(By.ID, "id_city").send_keys("Helsinki")
     # 43 | click | css=.btn-info |  | 
     self.driver.find_element(By.CSS_SELECTOR, ".btn-info").click()
     # 44 | click | linkText=Events |  | 

@@ -1,0 +1,16 @@
+{
+    "name": "Python: Debug Tests",
+    "type": "debugpy",
+    "request": "launch",
+    "program": "${file}",
+    "purpose": [
+        "debug-test"
+    ],
+    "console": "integratedTerminal",
+    "justMyCode": true,
+    "env": {
+        "ON_HEROKU": "0",
+        "PYTEST_ADDOPTS": "-c pytest-debug.ini",
+        "ECHO_SQL_QUERIES": "1"
+    },
+}
