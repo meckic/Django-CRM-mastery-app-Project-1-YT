@@ -6,7 +6,7 @@
             <i class="fa fa-user-circle-o" aria-hidden="true"></i> &nbsp;
             <strong>   
                 {{event.name|upper}}
-                {{event.date}}
+                {{event.date|date:"Y-m-d H:i"}}
             </strong>
             <hr> 
             <p> <strong> Description: </strong> {{event.description}} </p>

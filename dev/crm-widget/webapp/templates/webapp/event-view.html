@@ -12,7 +12,7 @@
                 <th scope="col"> ID </th>
                 <th scope="col"> Name </th>
                 <th scope="col"> Description </th>
-                <th scope="col"> Date </th>
+                <th scope="col"> Doors open </th>
                 <th scope="col"> Web </th>
                 <th scope="col"> Venue </th>
                 <th scope="col"> Attendees </th>
@@ -27,7 +27,7 @@
                 <td> {{event.id}} </td>
                 <td> {{event.name}}  </td>
                 <td> {{event.description}} </td>
-                <td> {{event.date.date}} </td>
+                <td> {{event.date|date:"Y-m-d H:i"}} </td>
                 <td> {{event.webpage}} </td>
                 <td> {{event.venue}} {{event.venue.city}} {{event.venue.country}}  </td>
                 <td>

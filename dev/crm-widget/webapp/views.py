@@ -12,6 +12,10 @@ from .models import Event
 from .models import Venue
 #from .models import PersonEvent
 
+#to debug add evet error:
+import logging
+logger = logging.getLogger(__name__)
+
 # - Homepage 
 def home(request):
     return render(request, 'webapp/index.html')
@@ -112,11 +116,24 @@ def delete_person(request, pk):
 def create_event(request):
     form = CreateEventForm()
     if request.method == "POST":
+        print("request.post:", request.POST)
         form = CreateEventForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Your event was created!")
-            return redirect("event-view")
+        try:
+            print("Before form.is_valid()")
+            logger.debug("Before form.is_valid()")
+            if form.is_valid():
+                print("Form is valid")
+                logger.debug("Form is valid")
+                form.save()
+                messages.success(request, "Your event was created!")
+                return redirect("event-view")
+            else:
+                print("Form errors:", form.errors)
+                logger.debug(f"Form errors: {form.errors}")
+        except Exception as e:
+            print(f"Exception in form validation: {e}")
+            logger.error(f"Exception in form validation: {e}")
+        
     context = {'form': form}
     return render(request, 'webapp/create-event.html', context=context)
 

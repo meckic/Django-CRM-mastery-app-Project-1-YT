@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %}
+{% extends 'webapp/base-a.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
 
@@ -12,10 +12,10 @@
             <form method="POST" autocomplete="off">
                 {% csrf_token %}
                 <!-- widget form.media-->
-                {{ form.media}}
+                {{form.media}}
                 {{form.name|as_crispy_field}}
                 <br>
-                {{form.date|as_crispy_field}}
+                {{form.date}}
                 <br>
                 {{form.description|as_crispy_field}}
                 <br>
