@@ -135,6 +135,7 @@ MEDIA_ROOT = BASE_DIR / 'static' # not in pythonanywhere
 # /static/	/home/kikkare/dev/crm/.venv/lib/python3.10/site-packages/django/contrib/admin/static	 
 # /static/	/home/kikkare/dev/crm/static	 
 # /media/	/home/kikkare/dev/crm/static/media/media
+# media files are in .../media/media dir in paw!!!
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
