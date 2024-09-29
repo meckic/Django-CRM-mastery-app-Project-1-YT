@@ -13,7 +13,7 @@
                 {% csrf_token %}
                 {{form.name|as_crispy_field}}
                 <br>
-                {{form.date}}
+                {{form.date|as_crispy_field}}
                 <br>
                 {{form.description|as_crispy_field}}
                 <br>
