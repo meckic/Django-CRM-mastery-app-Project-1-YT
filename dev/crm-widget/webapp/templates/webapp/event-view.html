@@ -1,0 +1,45 @@
+{% extends 'webapp/base.html' %}
+{% block content %}
+    <h5> Welcome, {{user}}! 👋 </h5>
+    <hr>
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-event' %}">
+        Create a new event &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    </a>
+    <hr> 
+    <table class="table table-hover table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th scope="col"> ID </th>
+                <th scope="col"> Name </th>
+                <th scope="col"> Description </th>
+                <th scope="col"> Date </th>
+                <th scope="col"> Web </th>
+                <th scope="col"> Venue </th>
+                <th scope="col"> Attendees </th>
+                <th scope="col"> View </th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% if events %}
+            {% for event in events %}
+            <tr>
+                <td> {{event.id}} </td>
+                <td> {{event.name}}  </td>
+                <td> {{event.description}} </td>
+                <td> {{event.date.date}} </td>
+                <td> {{event.webpage}} </td>
+                <td> {{event.venue}} {{event.venue.city}} {{event.venue.country}}  </td>
+                <td>
+                {% for attendee in event.persons.all %}
+                    {{attendee}},
+                {% endfor %}    
+                </td>
+                <!-- <td> {{event.attendees.all }} </td>  -->
+                <td> <a class="btn btn-success btn-sm" href="{% url 'singular-event' event.id  %}"> <i class="fa fa-eye" aria-hidden="true"></i> </a> </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}
