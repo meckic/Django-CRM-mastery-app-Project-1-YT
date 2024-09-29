@@ -38,7 +38,10 @@ class UpdatePersonForm(forms.ModelForm):
 class CreateEventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = '__all__' #['name', 'date', 'description', 'webpage', 'venue', 'persons']  
+        fields = '__all__' #['name', 'date', 'description', 'webpage', 'venue', 'persons']
+        widgets = {
+            'date': forms.TextInput(attrs={'class': 'datetimepicker'}),
+        }  
        
 # - Update an event
 class UpdateEventForm(forms.ModelForm):

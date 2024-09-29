@@ -1,6 +1,7 @@
 {% extends 'webapp/base.html' %}
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
+{% load static %}
 {% block content %}
     <body>
         <div class="container bg-light shadow-md p-5 form-layout">
@@ -13,9 +14,6 @@
                 {{form.name|as_crispy_field}}
                 <br>
                 {{form.date}}
-                <br>
-                {{ form.event_date|add_class:"datepicker" }}
-                {{ form.event_time|add_class:"timepicker" }}
                 <br>
                 {{form.description|as_crispy_field}}
                 <br>
@@ -33,6 +31,15 @@
                     Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </a>
             </form>
+            <!--widget-->
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            <script>
+                flatpickr('.datetimepicker', {
+                    enableTime: true,
+                    dateFormat: 'Y-m-d H:i',
+                    time_24hr: true  // Use 24-hour format, you can change this based on preference
+                });
+            </script>
         </div>
         <br>
     </body>
