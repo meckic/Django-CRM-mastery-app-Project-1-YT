@@ -114,6 +114,7 @@ def create_event(request):
     if request.method == "POST":
         form = CreateEventForm(request.POST)
         if form.is_valid():
+           # Save the event or do something with the data
             form.save()
             messages.success(request, "Your event was created!")
             return redirect("event-view")

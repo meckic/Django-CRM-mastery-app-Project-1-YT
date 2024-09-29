@@ -39,7 +39,7 @@ class CreateEventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = '__all__' #['name', 'date', 'description', 'webpage', 'venue', 'persons']  
-        
+       
 # - Update an event
 class UpdateEventForm(forms.ModelForm):
     class Meta:
