@@ -23,7 +23,7 @@ class Event(models.Model):
     name = models.CharField(max_length=200)
     date = models.DateTimeField()
     description = models.TextField(blank=True)
-    webpage = models.URLField()
+    webpage = models.URLField(default='https://')
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)                         # one to many
     persons = models.ManyToManyField('Person', through='PersonEvent', blank=True)      # m2m ref to 2nd table, not def yet --> in '' !!!
     
