@@ -1,15 +1,9 @@
 {% extends 'webapp/base.html' %}
 
 {% block content %}
-    <h5> Welcome, {{user}}! 👋 </h5>
+    <h5> Welcome to Search {{user}}! 👋 </h5>
     <hr>
-    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-person' %}">
-        Create a new person &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
-    </a>
-    <hr> 
-    
     <table class="table table-hover table-bordered">
-       
         <div class="card">
             <div class="card-body">
                 <!--<h4> Search person 😆</h4> 
@@ -29,7 +23,7 @@
             <input class="form-control"
                 type="search"
                 name="search"
-                placeholder="Begin Typing To Search Users..."
+                placeholder="Begin Typing Here To Search Users..."
                 hx-get="search-results-view"
                 hx-trigger="keyup changed, search"
                 hx-target="#search-results"

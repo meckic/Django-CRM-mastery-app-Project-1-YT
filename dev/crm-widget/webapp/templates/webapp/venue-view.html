@@ -1,6 +1,6 @@
 {% extends 'webapp/base.html' %}
 {% block content %}
-    <h5> Welcome, {{user}}! 👋 </h5>
+    <h5> Welcome to Venue view {{user}}! 👋 </h5>
     <hr>
     <a class="btn btn-outline-primary btn-sm" href="{% url 'create-venue' %}">
         Create a new venue &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -9,7 +9,6 @@
     <table class="table table-hover table-bordered">
         <thead class="table-light">
             <tr>
-                <th scope="col"> ID </th>
                 <th scope="col"> creation_date </th>
                 <th scope="col"> Name </th>
                 <th scope="col"> Email </th>
@@ -27,7 +26,6 @@
         {% if venues %}
             {% for venue in venues %}
             <tr>
-                <td> {{venue.id}} </td>
                 <td> {{venue.creation_date.date}}  </td>
                 <td> {{venue.name}}  </td>
                 <td> {{venue.email}} </td>
