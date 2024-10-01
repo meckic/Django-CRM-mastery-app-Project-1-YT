@@ -10,6 +10,7 @@
         <thead class="table-light">
             <tr>
                 <th scope="col"> Name </th>
+                <th scope="col"> Genre </th>
                 <th scope="col"> Description </th>
                 <th scope="col"> Doors Open </th>
                 <th scope="col"> Web </th>
@@ -24,6 +25,7 @@
             {% for event in events %}
             <tr>
                 <td> {{event.name}}  </td>
+                <td> {{event.genre}}  </td>
                 <td> {{event.description}} </td>
                 <td> {{event.date|date:"Y-m-d G:i"}} </td>
                 <td> {{event.webpage}} </td>
