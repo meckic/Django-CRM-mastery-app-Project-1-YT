@@ -1,0 +1,35 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i> &nbsp;
+            <strong>   
+                {{person.last_name|upper}}
+                {{person.first_name}}
+            </strong>
+            <hr> 
+            <p> <strong> ID: </strong> {{person.id}} </p>
+            <p> <strong> Email: </strong> {{person.email}} </p>
+            <p> <strong> Phone number: </strong> {{person.phone}} </p>
+            <p> <strong> Address: </strong> {{person.address}} </p>
+            <p> <strong> City: </strong> {{person.city}} </p>
+            <p> <strong> Province: </strong> {{person.province}} </p>
+            <p> <strong> Country: </strong> {{person.country}} </p>
+            <p> <strong> Creation date: </strong> {{person.creation_date}} </p>
+            <p> <strong> Events: </strong>
+                {% for event in person.events.all %}
+                    {{person}},
+                {% endfor %} 
+            </p>
+        </div>
+    </div>
+    
+    <br> 
+    <a href="{% url 'person-view' %}" class="btn btn-secondary"> Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
+    &nbsp; 
+    <a href="{% url 'update-person' person.id %}" class="btn btn-info"> Update person &nbsp; <i class="fa fa-plus" aria-hidden="true"></i> </a>
+    &nbsp;
+    <a href="{% url 'delete-person' person.id %}" class="btn btn-danger"> Delete &nbsp;<i class="fa fa-minus-square" aria-hidden="true"></i> </a>
+{% endblock %}
+

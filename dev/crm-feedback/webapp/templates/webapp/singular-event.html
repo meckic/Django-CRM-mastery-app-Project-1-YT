@@ -1,0 +1,33 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i> &nbsp;
+            <strong>   
+                {{event.name|upper}}
+                {{event.date|date:"Y-m-d G:i"}}
+            </strong>
+            <hr> 
+            <p> <strong> Id: </strong> {{event.id}} </p>
+            <p> <strong> Genre: </strong> {{event.genre}} </p>
+            <p> <strong> Description: </strong> {{event.description}} </p>
+            <p> <strong> Web page: </strong> {{event.webpage}} </p>
+            <p> <strong> Venue: </strong> {{event.venue}} </p>
+            <p> <strong> Attendeees: </strong> 
+            {% for attendee in event.persons.all %}
+                {{attendee}}, 
+            {% endfor %}
+            </p>
+            <p> <strong> Creation date: </strong> {{event.creation_date.date}} </p>
+        </div>
+    </div>
+    
+    <br> 
+    <a href="{% url 'event-view' %}" class="btn btn-secondary"> Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
+    &nbsp; 
+    <a href="{% url 'update-event' event.id %}" class="btn btn-info"> Update event &nbsp; <i class="fa fa-plus" aria-hidden="true"></i> </a>
+    &nbsp;
+    <a href="{% url 'delete-event' event.id %}" class="btn btn-danger"> Delete &nbsp;<i class="fa fa-minus-square" aria-hidden="true"></i> </a>
+{% endblock %}
+

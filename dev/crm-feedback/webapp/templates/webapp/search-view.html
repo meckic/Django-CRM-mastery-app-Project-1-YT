@@ -1,0 +1,39 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+    <h5> Welcome to Search {{user}}! 👋 </h5>
+    <hr>
+    <table class="table table-hover table-bordered">
+        <div class="card">
+            <div class="card-body">
+                <!--<h4> Search person 😆</h4> 
+                <i class="fa fa-search" aria-hidden="true"></i> &nbsp;-->
+                Search Person &nbsp; <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+        </div>
+        
+        <h3>
+            <span class="htmx-indicator">
+                ...
+            </span>
+        </h3>
+        
+        <form>
+            {% csrf_token %}
+            <input class="form-control"
+                type="search"
+                name="search"
+                placeholder="Begin Typing Here To Search Users..."
+                hx-get="search-results-view"
+                hx-trigger="keyup changed, search"
+                hx-target="#search-results"
+                hx-indicator=".htmx-indicator">
+                <!-- hx-get: the view to get "online". hx-target: ref to id below -->
+        </form>
+        
+        <div id="search-results">   
+            <!-- the hxtarget -->
+            {% include "webapp/search-results-view.html" %}
+        </div>
+    </table>
+{% endblock %}

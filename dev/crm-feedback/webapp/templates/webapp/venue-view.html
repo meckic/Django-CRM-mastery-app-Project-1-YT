@@ -1,0 +1,46 @@
+{% extends 'webapp/base.html' %}
+{% block content %}
+    <h5> Welcome to Venue view {{user}}! 👋 </h5>
+    <hr>
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-venue' %}">
+        Create a new venue &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    </a>
+    <hr> 
+    <table class="table table-hover table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th scope="col"> creation_date </th>
+                <th scope="col"> Name </th>
+                <th scope="col"> Email </th>
+                <th scope="col"> Phone </th>
+                <th scope="col"> Address </th>
+                <th scope="col"> City </th>
+                <th scope="col"> Province </th>
+                <th scope="col"> Country </th>
+                <th scope="col"> Pic </th>
+                <th scope="col"> View </th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% if venues %}
+            {% for venue in venues %}
+            <tr>
+                <td> {{venue.creation_date.date}}  </td>
+                <td> {{venue.name}}  </td>
+                <td> {{venue.email}} </td>
+                <td> {{venue.phone}} </td>
+                <td> {{venue.address}} </td>
+                <td> {{venue.city}}  </td>
+                <td> {{venue.province}}  </td>
+                <td> {{venue.country}}  </td>
+                <!-- <td> {{venue.upload}}  </td> -->
+                <td> <img src="{{venue.upload.url}}" class="banner" alt="{{venue.id}}" /> </td>
+                <!-- <td> {{venue.attendees.all }} </td>  -->
+                <td> <a class="btn btn-success btn-sm" href="{% url 'singular-venue' venue.id %}"> <i class="fa fa-eye" aria-hidden="true"></i> </a> </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

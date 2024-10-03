@@ -1,0 +1,52 @@
+{% extends 'webapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+    <body>
+        <div class="container bg-light shadow-md p-5 form-layout">
+            <h3> Create event </h3>
+            <h6> Start adding in the required details for your event. </h6>
+            <hr>
+            <br>
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+                {{form.name|as_crispy_field}}
+                <br>
+                {{form.genre|as_crispy_field}}
+                <br>
+                {{form.date|as_crispy_field}}
+                <br>
+                {{form.description|as_crispy_field}}
+                <br>
+                {{form.webpage|as_crispy_field}}
+                <br>
+                {{form.venue|as_crispy_field}}
+                <br>
+                {{form.persons|as_crispy_field}}
+                <br>
+                <button type="submit" class="btn btn-primary"> 
+                    Create event &nbsp; <i class="fa fa-check" aria-hidden="true"></i>
+                </button>
+                &nbsp;
+                <a href="{% url 'event-view' %}" class="btn btn-secondary"> 
+                    Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+            </form>
+            <!--widget-->
+            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+            <script>
+                flatpickr('.datetimepicker', {
+                    enableTime: true,
+                    dateFormat: 'Y-m-d H:i',
+                    time_24hr: true  // Use 24-hour format, you can change this based on preference
+                });
+            </script>
+        </div>
+        <br>
+    </body>
+{% endblock %}
+
+
+
+
