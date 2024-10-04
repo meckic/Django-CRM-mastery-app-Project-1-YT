@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.exceptions import PermissionDenied
-from .forms import CreateUserForm, LoginForm, CreatePersonForm,  UpdatePersonForm, CreateEventForm, UpdateEventForm, CreateVenueForm, UpdateVenueForm
+from .forms import CreateUserForm, LoginForm, CreatePersonForm,  UpdatePersonForm, CreateEventForm, UpdateEventForm, CreateVenueForm, UpdateVenueForm, CreateFeedbackForm, UpdateFeedbackForm
 
 from django.contrib.auth.models import auth, User
 from django.contrib.auth import authenticate
@@ -11,6 +11,7 @@ from .models import Person
 from .models import Event
 from .models import Venue
 #from .models import PersonEvent
+from .models import Feedback
 
 # - Homepage 
 def home(request):
@@ -63,6 +64,13 @@ def venue_view(request):
     my_venues = Venue.objects.all()
     context = {'venues': my_venues}
     return render(request, 'webapp/venue-view.html', context=context)
+
+# - Feedback
+@permission_required('webapp.view_feedback', raise_exception=True)
+def feedback_view(request):
+    my_feedback = Feedback.objects.all()
+    context = {'feedback': my_feedback}
+    return render(request, 'webapp/feedback-view.html', context=context)
 
 # - Create a person 
 @permission_required('webapp.add_person', raise_exception=True)
@@ -193,7 +201,7 @@ def delete_venue(request, pk):
     messages.success(request, "Your venue was deleted!")
     return redirect("venue-view")
 
-# - search
+# - search view
 @permission_required('webapp.view_person', raise_exception=True)
 def search_view(request):
     query = request.GET.get('search', '')
@@ -207,6 +215,7 @@ def search_view(request):
     context = {'persons': my_persons, 'count': my_persons.count()}
     return render(request, 'webapp/search-view.html', context=context)
 
+# - search results
 @permission_required('webapp.view_person', raise_exception=True)
 def search_results_view(request):
     query = request.GET.get('search', '')
@@ -219,6 +228,53 @@ def search_results_view(request):
 
     context = {'persons': my_persons, 'count': my_persons.count()}
     return render(request, 'webapp/search-results-view.html', context=context)
+
+# - Create feedback
+@permission_required('webapp.add_feedback', raise_exception=True)
+def create_feedback(request):
+    logged_in_username = request.user.username
+    logged_in_useremail = request.user.email
+    form = CreateFeedbackForm()
+    print("user:", logged_in_username, "email", logged_in_useremail)
+    if request.method == "POST":
+        form = CreateFeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your feedback was created!")
+            return redirect("feedback-view")
+        else:
+            print("FORM ERRORS:", form.errors)
+    context = {'form': form}
+    return render(request, 'webapp/create-feedback.html', context=context)
+
+# - Read / View a singular feedback
+@permission_required('webapp.view_feedback', raise_exception=True)
+def singular_feedback(request, pk):
+    my_feedback = Feedback.objects.get(id=pk)
+    context = {'feedback':my_feedback}
+    return render(request, 'webapp/singular-feedback.html', context=context)
+
+# - Update feedback
+@permission_required('webapp.change_feedback', raise_exception=True)
+def update_feedback(request, pk):
+    feedback = Feedback.objects.get(id=pk)
+    form = UpdateFeedbackForm(instance=feedback)
+    if request.method == 'POST':
+        form = UpdateFeedbackForm(request.POST, instance=feedback)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your feedback was updated!")
+            return redirect("feedback-view")
+    context = {'form':form}
+    return render(request, 'webapp/update-feedback.html', context=context)
+
+# - Delete a feeback
+@permission_required('webapp.delete_feedback', raise_exception=True)
+def delete_feedback(request, pk):
+    feedback = Feedback.objects.get(id=pk)
+    feedback.delete()
+    messages.success(request, "Your feedback was deleted!")
+    return redirect("feedback-view")
 
 # - User logout
 def user_logout(request):

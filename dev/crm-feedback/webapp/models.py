@@ -36,7 +36,7 @@ class Person(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    email = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
     phone = models.CharField(max_length=20, verbose_name=("Phone (use international +1xx format):"))
     address = models.CharField(max_length=300)
     city = models.CharField(max_length=255)
@@ -54,9 +54,15 @@ class PersonEvent(models.Model):
     class Meta:
         unique_together = ('person', 'event')                      # Enforce composite + unique primary key
 
-
-
-
-
-
-
+class Feedback(models.Model):
+    id = models.AutoField(primary_key=True)
+    creation_date = models.DateTimeField(auto_now_add=True)
+    subject = models.CharField(max_length=100, verbose_name=("Feedback Subject:"), choices=(('Venue', 'Venue'), ('Event', 'Event'), ('Person', 'Person'), ('General', 'General')), default='General')
+    date = models.DateTimeField(verbose_name=("Time of incident:"))
+    description = models.TextField(blank=True)
+    urgency = models.CharField(max_length=100, verbose_name=("Incident Urgency:"), choices=(('Normal', 'Normal'), ('High', 'High'), ('Low', 'Low')), default='Normal')
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=255)
+    
+    def __str__(self):
+        return self.subject

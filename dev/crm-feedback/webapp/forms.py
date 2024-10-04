@@ -5,6 +5,7 @@ from .models import Person
 from .models import Event
 from .models import Venue
 from .models import PersonEvent
+from .models import Feedback
 
 from django import forms
 
@@ -63,6 +64,24 @@ class UpdateVenueForm(forms.ModelForm):
     class Meta:
         model = Venue
         fields = ['name', 'email', 'phone', 'address', 'city', 'province', 'country', 'upload']
+
+# - Create feedback
+class CreateFeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = '__all__' # ['subject', 'date', 'description', 'urgency']
+        widgets = {
+            'date': forms.TextInput(attrs={'class': 'datetimepicker'}),
+        }
+
+# - Update feedback
+class UpdateFeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = ['subject', 'date', 'description', 'urgency']
+        widgets = {
+            'date': forms.TextInput(attrs={'class': 'datetimepicker'}),
+        }
 
 # - PersonEvent
 class PersonEventForm(forms.ModelForm):

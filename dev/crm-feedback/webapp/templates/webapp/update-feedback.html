@@ -1,0 +1,42 @@
+{% extends 'webapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<body>
+    <div class="container bg-light shadow-md p-5 form-layout">
+        <h3> Update feedback </h3>
+        <h6> Update the feedback down below. </h6>
+        <hr>
+        <br>
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            {{form.subject|as_crispy_field}}
+            <br>
+            {{form.date|as_crispy_field}}
+            <br>
+            {{form.description|as_crispy_field}}
+            <br>
+            {{form.urgency|as_crispy_field}}
+            <br>
+            <br>
+            <button type="submit" class="btn btn-info"> 
+                Update feedback &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+            &nbsp; 
+            <a href="{% url 'feedback-view' %}" class="btn btn-secondary"> 
+                Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+        </form>
+        <!--widget-->
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script>
+            flatpickr('.datetimepicker', {
+                enableTime: true,
+                dateFormat: 'Y-m-d H:i',
+                time_24hr: true  // Use 24-hour format, you can change this based on preference
+            });
+        </script>
+    </div>
+    <br>
+</body>
+{% endblock %}

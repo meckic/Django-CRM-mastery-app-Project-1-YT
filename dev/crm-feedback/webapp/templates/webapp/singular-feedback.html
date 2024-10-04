@@ -1,0 +1,26 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i> &nbsp;
+            <strong>   
+                Subject: {{feedback.subject|upper}}
+                Time of Incident: {{feedback.date|date:"Y-m-d G:i"}}
+            </strong>
+            <hr> 
+            <p> <strong> Id: </strong> {{feedback.id}} </p>
+            <p> <strong> Description: </strong> {{feedback.description}} </p>
+            <p> <strong> Urgency: </strong> {{feedback.urgency}} </p>
+            <p> <strong> Creation date: </strong> {{feedback.creation_date.date}} </p>
+        </div>
+    </div>
+    
+    <br> 
+    <a href="{% url 'feedback-view' %}" class="btn btn-secondary"> Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
+    &nbsp; 
+    <a href="{% url 'update-feedback' feedback.id %}" class="btn btn-info"> Update feedback &nbsp; <i class="fa fa-plus" aria-hidden="true"></i> </a>
+    &nbsp;
+    <a href="{% url 'delete-feedback' feedback.id %}" class="btn btn-danger"> Delete &nbsp;<i class="fa fa-minus-square" aria-hidden="true"></i> </a>
+{% endblock %}
+
