@@ -298,7 +298,7 @@ def send_email(emsubject, emdate, emdescription, emurgency, emreceiver):
     smtp_server = "smtp.gmail.com"
     sender_email = "michael.cajander@gmail.com"  # Enter your address
     receiver_email = emreceiver  # Enter receiver address
-    password = "xliu pskn zeia uylq"
+    password = "huuhaa"
     message = f"Subject: Feedback: {emsubject} Time: {emdate} Urgency: {emurgency}\n\n{emdescription}"
     # Create a secure SSL context
     context = ssl.create_default_context()
