@@ -156,3 +156,4 @@ SESSION_COOKIE_SECURE = False  #False tu run remotely on Pi4z
 CSRF_COOKIE_SECURE = False    #False tu run remotely on Pi4Z
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+

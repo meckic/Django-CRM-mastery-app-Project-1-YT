@@ -13,7 +13,10 @@ from .models import Venue
 #from .models import PersonEvent
 from .models import Feedback
 
+# for email ackn and reading of config parameters
 import smtplib, ssl
+import configparser
+from pathlib import Path
 
 # - Homepage 
 def home(request):
@@ -294,11 +297,16 @@ def user_logout(request):
 
 #send email with ssl
 def send_email(emsubject, emdate, emdescription, emurgency, emreceiver):
+    # Access configuration values
+    CONFIG_PATH = Path(__file__).resolve().parent / 'config.ini'
+    config = configparser.ConfigParser()
+    config.read(CONFIG_PATH)
+    value = config.get('DEFAULT', 'muuttuja')
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
     sender_email = "michael.cajander@gmail.com"  # Enter your address
     receiver_email = emreceiver  # Enter receiver address
-    password = "huuhaa"
+    password = value
     message = f"Subject: Feedback: {emsubject} Time: {emdate} Urgency: {emurgency}\n\n{emdescription}"
     # Create a secure SSL context
     context = ssl.create_default_context()
