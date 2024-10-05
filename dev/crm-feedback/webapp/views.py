@@ -13,6 +13,8 @@ from .models import Venue
 #from .models import PersonEvent
 from .models import Feedback
 
+import smtplib, ssl
+
 # - Homepage 
 def home(request):
     return render(request, 'webapp/index.html')
@@ -235,12 +237,20 @@ def create_feedback(request):
     logged_in_username = request.user.username
     logged_in_useremail = request.user.email
     form = CreateFeedbackForm()
-    print("user:", logged_in_username, "email", logged_in_useremail)
+    #print("user:", logged_in_username, "email", logged_in_useremail)
     if request.method == "POST":
         form = CreateFeedbackForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Your feedback was created!")
+            # to send email ack.
+            emsubject = form.cleaned_data['subject']
+            emdate = form.cleaned_data['date'].strftime('%Y-%m-%d')
+            emdescription = form.cleaned_data['description']
+            emurgency = form.cleaned_data['urgency']
+            emreceiver = form.cleaned_data['email']
+            #print(emsubject, emdate, emdescription, emurgency, emreceiver) 
+            send_email(emsubject, emdate, emdescription, emurgency, emreceiver)
             return redirect("feedback-view")
         else:
             print("FORM ERRORS:", form.errors)
@@ -282,6 +292,19 @@ def user_logout(request):
     messages.success(request, "Logout success!")
     return redirect("my-login")
 
-
+#send email with ssl
+def send_email(emsubject, emdate, emdescription, emurgency, emreceiver):
+    port = 465  # For SSL
+    smtp_server = "smtp.gmail.com"
+    sender_email = "michael.cajander@gmail.com"  # Enter your address
+    receiver_email = emreceiver  # Enter receiver address
+    password = "xliu pskn zeia uylq"
+    message = f"Subject: Feedback: {emsubject} Time: {emdate} Urgency: {emurgency}\n\n{emdescription}"
+    # Create a secure SSL context
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+        server.login(sender_email, password)
+        # TODO: Send email here
+        server.sendmail(sender_email, receiver_email, message)
 
 
