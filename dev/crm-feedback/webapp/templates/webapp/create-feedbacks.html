@@ -1,0 +1,41 @@
+{% extends 'webapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+    <body>
+        <div class="container bg-light shadow-md p-5 form-layout">
+            <h3> Give feedback </h3>
+            <h6> Please add the required details for your feedback. </h6>
+            <hr>
+            <br>
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+
+                <div id="feedbackContainer" class="mb-3">
+                    <h3>Leave Your Feedback</h3>
+                    <form id="feedbackForm" class="mb-3" method="post">
+                        <div id="ratingStars">
+                            <span class="star" data-rating="1">&#9733;</span>
+                            <span class="star" data-rating="2">&#9733;</span>
+                            <span class="star" data-rating="3">&#9733;</span>
+                            <span class="star" data-rating="4">&#9733;</span>
+                            <span class="star" data-rating="5">&#9733;</span>
+                        </div>
+                        <textarea name="message" placeholder="Enter your feedback"></textarea>
+                        <input type="hidden" name="rating" id="ratingInput" value="0">
+                        <h5> </h5>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+    
+        </div>
+        <br>
+
+    </body>
+
+{% endblock %}
+
+
+
+

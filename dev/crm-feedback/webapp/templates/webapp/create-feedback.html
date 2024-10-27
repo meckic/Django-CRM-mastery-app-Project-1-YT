@@ -11,6 +11,7 @@
             <br>
             <form method="POST" autocomplete="off">
                 {% csrf_token %}
+
                 {{form.subject|as_crispy_field}}
                 <br>
                 {{form.date|as_crispy_field}}
@@ -38,6 +39,8 @@
                     Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </a>
             </form>
+
+            
             <!--widget-->
             <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
             <script>
@@ -47,9 +50,14 @@
                     time_24hr: true  // Use 24-hour format, you can change this based on preference
                 });
             </script>
+
+            
+
         </div>
         <br>
+
     </body>
+
 {% endblock %}
 
 

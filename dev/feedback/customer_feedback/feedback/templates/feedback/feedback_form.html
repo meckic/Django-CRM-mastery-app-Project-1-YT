@@ -1,0 +1,131 @@
+{% extends 'feedback/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Customer Feedback Form</h5>
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            
+            <div class="mb-3">
+                <label for="feedback_type" class="form-label">This feedback is a</label>
+                <div>
+                    <input type="radio" id="suggestion" name="feedback_type" value="suggestion" required>
+                    <label for="suggestion">Suggestion</label>
+                    <input type="radio" id="compliment" name="feedback_type" value="compliment" required>
+                    <label for="compliment">Compliment</label>
+                    <input type="radio" id="complaint" name="feedback_type" value="complaint" required>
+                    <label for="complaint">Complaint</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="about_service" class="form-label">About which service?</label>
+                <select class="form-control" id="about_service" name="about_service" required>
+                    <option value="">Select</option>
+                    <option value="enquiries">Enquiries/Information</option>
+                    <option value="complaint_handling">Complaint handling/dispute resolution</option>
+                    <option value="home_building">Home building licenses</option>
+                    <option value="business_licenses">Business licenses</option>
+                    <option value="inspections">Inspections/Investigations</option>
+                    <option value="transport_bonds">Transport/Travel bonds</option>
+                    <option value="strata_mediation">Strata/State mediation</option>
+                    <option value="cooperatives">Co-operatives/Associations</option>
+                    <option value="asbestos">Loose-fill asbestos implementation taskforce</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" class="form-control mt-2" id="other_service" name="other_service" placeholder="Other (please specify)">
+            </div>
+            <div class="mb-3">
+                <label for="about_issue" class="form-label">About which issue?</label>
+                <select class="form-control" id="about_issue" name="about_issue" required>
+                    <option value="">Select</option>
+                    <option value="fair_trading">Fair Trading decision, policy or procedure</option>
+                    <option value="administration">Administration of legislation</option>
+                    <option value="information">Information accuracy</option>
+                    <option value="timeliness">Timeliness of service</option>
+                    <option value="staff">Staff actions/Customer service</option>
+                    <option value="accessibility">Accessibility of service</option>
+                    <option value="fees">Fees/Charges</option>
+                    <option value="website">Website</option>
+                    <option value="other">Other</option>
+                </select>
+                <input type="text" class="form-control mt-2" id="other_issue" name="other_issue" placeholder="Other (please specify)">
+            </div>
+            <div class="mb-3">
+                <label for="how_provided" class="form-label">How did we provide the service?</label>
+                <input type="text" class="form-control" id="how_provided" name="how_provided" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone_number" class="form-label">Phone number (if applicable)</label>
+                <input type="text" class="form-control" id="phone_number" name="phone_number">
+            </div>
+            <div class="mb-3">
+                <label for="fair_trading_officer" class="form-label">Name of Fair Trading officer (if applicable)</label>
+                <input type="text" class="form-control" id="fair_trading_officer" name="fair_trading_officer">
+            </div>
+            <div class="mb-3">
+                <label for="date_of_service" class="form-label">Date of service</label>
+                <input type="date" class="form-control" id="date_of_service" name="date_of_service">
+            </div>
+            <div class="mb-3">
+                <label for="time_of_service" class="form-label">Time of service</label>
+                <input type="time" class="form-control" id="time_of_service" name="time_of_service">
+            </div>
+            <div class="mb-3">
+                <label for="trader_or_consumer" class="form-label">Are you</label>
+                <div>
+                    <input type="radio" id="trader" name="trader_or_consumer" value="trader" required>
+                    <label for="trader">A trader</label>
+                    <input type="radio" id="consumer" name="trader_or_consumer" value="consumer" required>
+                    <label for="consumer">A consumer</label>
+                    <input type="radio" id="someone_else" name="trader_or_consumer" value="someone_else" required>
+                    <label for="someone_else">Providing feedback on behalf of someone else</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="feedback_details" class="form-label">Please write details of your feedback here</label>
+                <textarea class="form-control" id="feedback_details" name="feedback_details" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <div class="mb-3">
+                <label for="organisation" class="form-label">Organisation</label>
+                <input type="text" class="form-control" id="organisation" name="organisation">
+            </div>
+            <div class="mb-3">
+                <label for="daytime_phone" class="form-label">Daytime phone</label>
+                <input type="text" class="form-control" id="daytime_phone" name="daytime_phone">
+            </div>
+            <div class="mb-3">
+                <label for="email_address" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email_address" name="email_address">
+            </div>
+            <!--<button type="submit" class="btn btn-success">Submit</button>-->
+
+            <div id="feedbackContainer" class="mb-3">
+                <h2>Leave Your Feedback</h2>
+                <form id="feedbackForm" class="mb-3"> <!-- method="post">-->
+                    <div id="ratingStars">
+                        <span class="star" data-rating="1">&#9733;</span>
+                        <span class="star" data-rating="2">&#9733;</span>
+                        <span class="star" data-rating="3">&#9733;</span>
+                        <span class="star" data-rating="4">&#9733;</span>
+                        <span class="star" data-rating="5">&#9733;</span>
+                    </div>
+                    <textarea name="message" placeholder="Enter your feedback"></textarea>
+                    <input type="hidden" name="rating" id="ratingInput" value="0">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

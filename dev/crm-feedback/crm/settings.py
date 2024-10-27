@@ -127,7 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static'] # also media/ and images needs this! NOT in pythonanywhere!
 
-#MEDIA_URL = 'media/'  # 'media' (w/o slash) in pythonanywhere!
+#MEDIA_URL = 'media/'  # needed in in pythonanywhere!
 MEDIA_ROOT = BASE_DIR / 'static' # not in pythonanywhere
 #MEDIA_ROOT = "/home/kikkare/dev/crm/static/media" # needed in pythonanywhere only!
 

@@ -31,6 +31,7 @@ urlpatterns = [
     path('delete-venue/<int:pk>', views.delete_venue, name="delete-venue"),
 
     path('create-feedback', views.create_feedback, name="create-feedback"),
+    path('create-feedbacks', views.create_feedbacks, name="create-feedbacks"),
     path('singular-feedback/<int:pk>', views.singular_feedback, name="singular-feedback"),
     path('update-feedback/<int:pk>', views.update_feedback, name='update-feedback'),
     path('delete-feedback/<int:pk>', views.delete_feedback, name="delete-feedback"),

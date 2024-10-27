@@ -234,11 +234,9 @@ def search_results_view(request):
     context = {'persons': my_persons, 'count': my_persons.count()}
     return render(request, 'webapp/search-results-view.html', context=context)
 
-# - Create feedback
+# - Create feedback 
 @permission_required('webapp.add_feedback', raise_exception=True)
 def create_feedback(request):
-    logged_in_username = request.user.username
-    logged_in_useremail = request.user.email
     form = CreateFeedbackForm()
     #print("user:", logged_in_username, "email", logged_in_useremail)
     if request.method == "POST":
@@ -259,6 +257,22 @@ def create_feedback(request):
             print("FORM ERRORS:", form.errors)
     context = {'form': form}
     return render(request, 'webapp/create-feedback.html', context=context)
+
+# - Create feedback  stars
+@permission_required('webapp.add_feedbacks', raise_exception=True)
+def create_feedbacks(request):
+    form = CreateFeedbackForm()
+    #print("user:", logged_in_username, "email", logged_in_useremail)
+    if request.method == "POST":
+        form = CreateFeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your feedback was created!")
+            return redirect("feedback-view")
+        else:
+            print("FORM ERRORS:", form.errors)
+    context = {'form': form}
+    return render(request, 'webapp/create-feedbacks.html', context=context)
 
 # - Read / View a singular feedback
 @permission_required('webapp.view_feedback', raise_exception=True)

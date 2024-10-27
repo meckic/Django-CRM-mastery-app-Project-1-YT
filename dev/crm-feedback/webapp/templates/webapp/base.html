@@ -10,7 +10,29 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--widget-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+        <!--stars feedback-->
+        <style>
+            .navbar { background-color: #388e3c; }
+            .navbar-brand { color: white; }
+            #feedbackContainer {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+                width: 400px;
+                text-align: center;
+            }
+            #ratingStars {
+                font-size: 30px;
+            }
+            .star {
+                cursor: pointer;
+            }
+            .selected {
+                color: gold;
+            }
+        </style>
+    
         
     </head>
 
@@ -40,5 +62,25 @@
         <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
         <!--widget-->
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+        <script>
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('ratingInput');
+        
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const rating = parseInt(star.getAttribute('data-rating'));
+                    ratingInput.value = rating;
+                    stars.forEach(s => {
+                        if (parseInt(s.getAttribute('data-rating')) <= rating) {
+                            s.classList.add('selected');
+                        } else {
+                            s.classList.remove('selected');
+                        }
+                    });
+                });
+            });
+        </script>
+
         </body>
 </html>
